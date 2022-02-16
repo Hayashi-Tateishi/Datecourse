@@ -26,4 +26,4 @@ result_list = json.loads(response.text)["results"]["shop"]
 
 ##お勧め順上位10件の店名をリストansに格納
 ans = [d.get("name") for d in result_list]
-ans
+print(ans)

@@ -37,28 +37,28 @@
         <span class="name">Date course</span><br>
            <p style="text-align: right" >    </p>
         
-        <form method = "post" action ="0118_station.php">
+        <form action="#" id="form">
             <p>最寄り駅はどこ？</p>
             <input type ="text" name="station">
             <p><input type="submit" value="OK"></p>
         </form>
+        <p id="output"></p>
         </CENTER>
     
-       
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script>
         'use strict';
-            $(function(){
-                $.ajax({
-                    url: '../recieve.py',
-                    type: 'post',
-                    data: '送信メッセージ'
-                }).done(function(data){
-                    console.log(data);
-                }).fail(function(){
-                    console.log('failed');
-                });
-            });
+        let seatJson = JSON.parse('{{data_json|safe}}');
+        
+        document.getElementById('form').onsubmit = function(event) {
+            event.preventDefault();
+            const station_name = document.getElementById('form').station.value;
+            if (station_name == '池袋') {
+                
+                document.getElementById('output').textContent = `${JSON.stringify(seatJson.池袋)}`;
+            }
+            console.log(station_name);
+            console.log(seatJson.池袋)
+        }
     </script>
     </body>
     </html>
